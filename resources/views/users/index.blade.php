@@ -14,7 +14,7 @@
                                     {{ $user->title }}
                                 </h4>
                             </article>
-                            <div class="body">{{ $thread->body }}</div>
+                            <div class="body">{{ $user->user_id }}</div>
                             <hr>
                         @endforeach
                     </div>
