@@ -10,7 +10,7 @@
                     </div>
 
                     <div class="panel-body">
-
+                        <p>Member since: {{ $user->created_at->diffForHumans() }}</p>
                     </div>
                 </div>
             </div>
