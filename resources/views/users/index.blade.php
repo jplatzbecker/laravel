@@ -7,7 +7,6 @@
                 <div class="panel panel-default">
 
                     <div class="panel-heading">Users</div>
-                    @if(Auth()->check())
                     <div class="panel-body">
                         @foreach ($users as $user)
                             <article>
@@ -19,9 +18,6 @@
                             <hr>
                         @endforeach
                     </div>
-                    @else
-                        <p class="text-center"> Please <a href="{{ route('login') }}">sign in</a> to see all users.</p>
-                    @endif
                 </div>
             </div>
         </div>
