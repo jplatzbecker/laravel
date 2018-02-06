@@ -12,9 +12,9 @@ class ReplyTest extends TestCase
     use DatabaseMigrations;
 
     /** @test */
-    function it_has_an_creator(){
+    function it_has_an_owner(){
         $reply = factory('App\Reply')->create();
 
-        $this->assertInstanceOf('App\User', $reply->creator);
+        $this->assertInstanceOf('App\User', $reply->owner);
     }
 }
