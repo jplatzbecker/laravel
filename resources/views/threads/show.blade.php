@@ -6,7 +6,7 @@
             <div class="col-md-8 col-md-offset-2">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <a href="#">{{ $thread->creator->name }}</a> posted:
+                        <a href="/users/{{ $thread->creator->id }}">{{ $thread->creator->name }}</a> posted:
                         {{ $thread->title }}
                     </div>
 
