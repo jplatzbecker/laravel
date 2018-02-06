@@ -11,10 +11,10 @@
                         @foreach ($users as $user)
                             <article>
                                 <h4>
-                                    {{ $user->title }}
+                                    {{ $user->name }}
                                 </h4>
                             </article>
-                            <div class="body">{{ $user->user_id }}</div>
+                            <div class="body">{{ $user->id }}</div>
                             <hr>
                         @endforeach
                     </div>
@@ -23,3 +23,5 @@
         </div>
     </div>
 @endsection
+
+
