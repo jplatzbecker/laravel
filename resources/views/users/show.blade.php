@@ -11,6 +11,7 @@
 
                     <div class="panel-body">
                         <p>Member since: {{ $user->created_at->diffForHumans() }}</p>
+                        <p>E-mail: {{ $user->email }}</p>
                     </div>
                 </div>
             </div>
