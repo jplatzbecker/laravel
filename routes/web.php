@@ -21,9 +21,11 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/users', 'UsersController@index');
-    Route::get('/users/{user}', 'UsersController@show');
-});
+    Route::get('/user/{user}', 'UsersController@show');
 
+    Route::get('/user/edit/profile', 'UsersController@edit');
+
+});
 Route::get('/threads', 'ThreadsController@index');
 Route::post('/threads', 'ThreadsController@store');
 Route::get('/threads/{thread}', 'ThreadsController@show');

@@ -6,6 +6,8 @@ use App\Thread;
 use App\User;
 use Illuminate\Http\Request;
 
+use Illuminate\Support\Facades\Auth;
+
 class UsersController extends Controller
 {
 
@@ -34,7 +36,7 @@ class UsersController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -42,6 +44,7 @@ class UsersController extends Controller
         $user = User::create([
             'id' => auth()->id(),
             'title' => request('title'),
+            'avatar' => 'default.png',
             'body' => request('body')
         ]);
 
@@ -51,7 +54,7 @@ class UsersController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Thread  $thread
+     * @param  \App\Thread $thread
      * @return \Illuminate\Http\Response
      */
     public function show(User $user)
@@ -62,12 +65,14 @@ class UsersController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Thread  $thread
+     * @param  \App\Thread $thread
      * @return \Illuminate\Http\Response
      */
-    public function edit(User $user)
+    public function edit()
     {
-        //
+        $currentUser = User::where('id', '=', Auth::user()->id)->get();
+
+        return view('users.settings', array("currentUser" => $currentUser));
     }
 
     /**

@@ -54,7 +54,10 @@
 
                                 <ul class="dropdown-menu">
                                     <li>
-                                        <a href="/users/{{ Auth::user()->id }}">
+                                        <a href="/user/edit/profile">Edit Profile</a>
+                                    </li>
+                                    <li>
+                                        <a href="/user/{{ Auth::user()->id }}">
                                             Profile
                                         </a>
                                     </li>
