@@ -13,7 +13,16 @@
                         <p>Member since: {{ $user->created_at->diffForHumans() }}</p>
                         <p>E-mail: {{ $user->email }}</p>
                     </div>
+
                 </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+
+                    @include ('users.reply')
+
             </div>
         </div>
 
