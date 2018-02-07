@@ -70,9 +70,14 @@ class UsersController extends Controller
      */
     public function edit()
     {
-        $currentUser = User::where('id', '=', Auth::user()->id)->get();
 
-        return view('users.edit', compact('currentUser'));
+       // $currentUserQuery = User::where('id', '=', Auth::user()->id)->first()->get();
+       // $currentUser = $currentUserQuery;
+
+        //return view('users.edit', compact('currentUser'));
+        return view('users.edit', [
+            'currentUser' => Auth::user()
+        ]);
     }
 
     /**
