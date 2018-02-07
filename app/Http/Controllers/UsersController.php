@@ -72,7 +72,7 @@ class UsersController extends Controller
     {
         $currentUser = User::where('id', '=', Auth::user()->id)->get();
 
-        return view('users.settings', array("currentUser" => $currentUser));
+        return view('users.edit', compact('currentUser'));
     }
 
     /**
