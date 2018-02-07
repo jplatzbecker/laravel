@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Thread;
 use App\User;
+use Intervention\Image\ImageManagerStatic as Image;
 use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\Auth;
@@ -87,9 +88,25 @@ class UsersController extends Controller
      * @param  \App\Thread  $thread
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user)
+    public function update(Request $request)
     {
-        //
+        $request->validate([
+           'avatar' => 'required|max:10240'
+        ]);
+
+        if($request->hasFile('avatar')){
+            $user = Auth::user();
+            $avatar = $request->file('avatar');
+            $filename = $user->name . '.' . time()."." . $avatar->getClientOriginalExtension();
+            Image::make($avatar)->resize(300, 300)->save(public_path('/uploads/avatars/' . $filename));
+
+            $user->avatar = $filename;
+         $user->save();
+            return view('users.edit', [
+                'currentUser' => Auth::user()
+            ])->with('avatarSuccess', 'Profile updated :)');
+       }
+
     }
 
     /**

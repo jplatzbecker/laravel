@@ -12,7 +12,7 @@ class editAvatarTest extends TestCase
     use DatabaseMigrations;
 
     /** @test */
-    public function testExample()
+    public function update()
     {
         $this->assertTrue(true);
     }

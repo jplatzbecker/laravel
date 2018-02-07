@@ -22,8 +22,8 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::middleware(['auth'])->group(function () {
     Route::get('/users', 'UsersController@index');
     Route::get('/user/{user}', 'UsersController@show');
-
     Route::get('/user/edit/profile', 'UsersController@edit');
+    Route::post('/user/edit/profile', 'UsersController@update');
 
 });
 Route::get('/threads', 'ThreadsController@index');
