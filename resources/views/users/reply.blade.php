@@ -5,7 +5,7 @@
     @foreach ($user->replies as $reply)
     <div class="panel-body">
         <p>
-            <a href="/threads/{{ $reply->thread_id }}#{{ $user->id }}">
+            <a href="/threads/{{ $reply->thread_id }}#{{ $reply->id }}">
                 {{ $reply->thread->title }}
             </a>
         </p>
