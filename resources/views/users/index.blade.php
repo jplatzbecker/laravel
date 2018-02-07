@@ -11,7 +11,7 @@
                         @foreach ($users as $user)
                             <article>
                                 <h4>
-                                    <a href="/users/{{ $user->id }}">{{ $user->name }}</a>
+                                    <a href="/user/{{ $user->id }}">{{ $user->name }}</a>
                                 </h4>
                             </article>
                             <div class="body">{{ $user->id }}</div>
