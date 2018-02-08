@@ -91,21 +91,26 @@ class UsersController extends Controller
     public function update(Request $request)
     {
         $request->validate([
-           'avatar' => 'required|max:10240'
+           'avatar' => 'required|max:10240',
+            'name' => 'required|min:5',
+            'email' => 'required|min:10'
         ]);
+        $user = Auth::user();
+        $user->name = $request->name;
+        $user->email = $request->email;
 
         if($request->hasFile('avatar')){
-            $user = Auth::user();
             $avatar = $request->file('avatar');
             $filename = $user->name . '.' . time()."." . $avatar->getClientOriginalExtension();
             Image::make($avatar)->resize(300, 300)->save(public_path('/uploads/avatars/' . $filename));
 
             $user->avatar = $filename;
-         $user->save();
-            return view('users.edit', [
-                'currentUser' => Auth::user()
-            ])->with('avatarSuccess', 'Profile updated :)');
+
        }
+        $user->save();
+        return view('users.edit', [
+            'currentUser' => Auth::user()
+        ])->with('avatarSuccess', 'Profile updated :)');
 
     }
 

@@ -12,8 +12,23 @@ class editAvatarTest extends TestCase
     use DatabaseMigrations;
 
     /** @test */
-    public function update()
+    public function user_can_update_his_own_avatar()
     {
-        $this->assertTrue(true);
+        $user = factory('App\User')->create();
+        $this->be($user);
+
+        //$newAvatar = "datavatar.jpg";
+        //$user = $this->faker->username;
+        $fakeUsername = $this->faker->username;
+        $fakeEmail = $this->faker->email;
+        $request = ['name' => $fakeUsername, 'email' => $fakeEmail, 'avatar' => $this->faker->image('public/uploads/avatars', 300, 300, null, false)];
+
+        $this->post('/user/edit/profile', $request);
+        //dd($request);
+        $this->get('/user/edit/profile')
+            ->assertSee($request['name'])
+            ->assertSee($request['avatar'])
+            ->assertSee($request['email']);
+
     }
 }

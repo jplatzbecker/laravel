@@ -2,19 +2,31 @@
 
 namespace Tests;
 
+use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
+use Faker\Factory as Faker;
 
 abstract class TestCase extends BaseTestCase
 {
-    use CreatesApplication;
+    use CreatesApplication, DatabaseMigrations;
 
-    protected function signIn($user = null){
+    protected $faker;
 
-        $user = $user ?: create('App\User');
+    /**
+     * Set up the test
+     */
+    public function setUp()
+    {
+        parent::setUp();
 
-        $this->actingAs($user);
+        $this->faker = Faker::create();
 
-        return $this;
+        $this->seed();
+    }
 
+    public function tearDown()
+    {
+        $this->artisan('migrate:reset');
+        parent::tearDown();
     }
 }
